@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useRouter } from "next/router";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   BellIcon,
@@ -13,6 +14,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const router = useRouter();
   return (
     <div>
       <Disclosure as="nav" className="bg-white shadow">
@@ -35,7 +37,10 @@ export default function NavBar() {
                   </div>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                  <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customRed">
+                  <button
+                    onClick={() => router.push("/")}
+                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customRed"
+                  >
                     <span className="sr-only">Your Stories</span>
                     <BookOpenIcon className="h-6 w-6" aria-hidden="true" />
                   </button>

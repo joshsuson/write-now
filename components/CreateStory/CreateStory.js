@@ -1,8 +1,10 @@
 import React from "react";
 import CreateStoryForm from "./CreateStoryForm";
 import { RefreshIcon, XIcon, ChevronRightIcon } from "@heroicons/react/outline";
+import { useStoryContext } from "../../context/StoryContext";
 
 export default function CreateStory() {
+  const { handleCreateStory, handleCancelCreateStory } = useStoryContext();
   return (
     <div className="mx-auto mt-20 max-w-7xl mb-20">
       <div className="mb-12">
@@ -13,13 +15,14 @@ export default function CreateStory() {
           button to get random results.
         </h2>
       </div>
-      <div className="bg-white shadow-lg rounded-lg ">
+      <div className="bg-white shadow rounded-lg ">
         <div className="px-4 py-5 sm:p-6">
           <CreateStoryForm />
         </div>
       </div>
       <div className="flex justify-between mt-10">
         <button
+          onClick={handleCancelCreateStory}
           type="button"
           className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
         >
@@ -27,6 +30,7 @@ export default function CreateStory() {
           Cancel
         </button>
         <button
+          onClick={handleCreateStory}
           type="button"
           className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-red-500 hover:bg-customRed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
         >

@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { InformationCircleIcon } from "@heroicons/react/outline";
+import { useStoryContext } from "../../context/StoryContext";
 
 const options = [
   { id: 1, name: "Hero's Journey" },
@@ -14,10 +15,16 @@ function classNames(...classes) {
 
 export default function StructureSelect() {
   const [selected, setSelected] = useState(options[0]);
+  const { setStructure } = useStoryContext();
+
+  const handleChange = (e) => {
+    setSelected(e);
+    setStructure(e.name);
+  };
 
   return (
     <div>
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox value={selected} onChange={handleChange}>
         {({ open }) => (
           <>
             <Listbox.Label className=" text-sm font-medium text-gray-700  flex justify-between">

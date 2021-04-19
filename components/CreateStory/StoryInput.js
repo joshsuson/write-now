@@ -7,6 +7,8 @@ export default function StoryInput({
   placeholder,
   label,
   colSpan,
+  value,
+  handleInput,
 }) {
   return (
     <div className={`col-span-${colSpan}`}>
@@ -35,6 +37,8 @@ export default function StoryInput({
           id={name}
           className="shadow-sm focus:ring-red-500 focus:border-red-500 block w-full sm:text-sm border-gray-300 rounded-md"
           placeholder={placeholder}
+          value={value}
+          onChange={handleInput}
         />
       </div>
     </div>

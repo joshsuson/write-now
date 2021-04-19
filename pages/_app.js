@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import StoryContextProvider from "../context/StoryContext";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <StoryContextProvider>
+      <Component {...pageProps} />
+    </StoryContextProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

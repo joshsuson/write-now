@@ -1,10 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import {
-  RefreshIcon,
-  InformationCircleIcon,
-  CheckIcon,
-} from "@heroicons/react/outline";
+import { RefreshIcon, InformationCircleIcon } from "@heroicons/react/outline";
+import { useStoryContext } from "../../context/StoryContext";
+import { characters } from "../../data/characters";
+import { prompts } from "../../data/prompts";
 
 export default function StoryInput({
   name,
@@ -18,6 +17,34 @@ export default function StoryInput({
   infoBody,
 }) {
   const [open, setOpen] = useState(false);
+  const {
+    setCharacter,
+    setDesire,
+    setObstacle,
+    desire,
+    obstacle,
+  } = useStoryContext();
+
+  const handleRandomInput = (name) => {
+    if (name === "character") {
+      const randomCharacter =
+        characters[Math.floor(Math.random() * characters.length)];
+      setCharacter(randomCharacter);
+    } else if (name === "desire") {
+      let randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      if (randomPrompt === obstacle) {
+        randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      }
+      setDesire(randomPrompt);
+    } else if (name === "obstacle") {
+      let randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      if (randomPrompt === desire) {
+        randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      }
+      setObstacle(randomPrompt);
+    }
+  };
+
   return (
     <>
       <div className={`col-span-${colSpan}`}>
@@ -36,7 +63,10 @@ export default function StoryInput({
               >
                 <InformationCircleIcon className="h-6 w-6" aria-hidden="true" />
               </button>
-              <button className="bg-white ml-1 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customRed">
+              <button
+                onClick={() => handleRandomInput(name)}
+                className="bg-white ml-1 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customRed"
+              >
                 <RefreshIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </span>

@@ -1,12 +1,11 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        customRed: "#f76d6c",
-      },
-    },
+    extend: {},
+    colors,
   },
   variants: {
     extend: {},

@@ -17,13 +17,8 @@ export default function StoryInput({
   infoBody,
 }) {
   const [open, setOpen] = useState(false);
-  const {
-    setCharacter,
-    setDesire,
-    setObstacle,
-    desire,
-    obstacle,
-  } = useStoryContext();
+  const { setCharacter, setDesire, setObstacle, desire, obstacle } =
+    useStoryContext();
 
   const handleRandomInput = (name) => {
     if (name === "character") {
@@ -59,13 +54,13 @@ export default function StoryInput({
             <span className="text-sm text-gray-500" id={`${name}-optional`}>
               <button
                 onClick={() => setOpen(true)}
-                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customRed"
+                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
               >
                 <InformationCircleIcon className="h-6 w-6" aria-hidden="true" />
               </button>
               <button
                 onClick={() => handleRandomInput(name)}
-                className="bg-white ml-1 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customRed"
+                className="bg-white ml-1 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
               >
                 <RefreshIcon className="h-6 w-6" aria-hidden="true" />
               </button>

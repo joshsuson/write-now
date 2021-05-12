@@ -10,6 +10,8 @@ export function useStoryContext() {
 
 export const ACTIONS = {
   SELECT_SECTION: "select-section",
+  ADD_CHARACTER: "add-character",
+  SELECT_CHARACTER: "select-character",
 };
 
 export default function StoryContextProvider({ children }) {
@@ -20,14 +22,23 @@ export default function StoryContextProvider({ children }) {
   const [character, setCharacter] = useState("");
   const [desire, setDesire] = useState("");
   const [obstacle, setObstacle] = useState("");
-  const [storyStatment, setStoryStatement] = useState("");
+  const [storyStatement, setStoryStatement] = useState("");
   const [structure, setStructure] = useState("Hero's Journey");
   const [storyId, setStoryId] = useState();
   const [stories, setStories] = useState([]);
   const [noStories, setNoStories] = useState(true);
+  const [characters, setCharacters] = useState([
+    { id: uuidv4(), name: "josh", title: "Josh" },
+    { id: uuidv4(), name: "devan", title: "Devan" },
+    { id: uuidv4(), name: "addison", title: "Addison" },
+  ]);
 
   const [storyNavSection, dispatch] = useReducer(reducer, {
     selected: "overview",
+  });
+
+  const [characterNav, characterDispatch] = useReducer(characterReducer, {
+    selected: "",
   });
 
   function reducer(storyNavSection, action) {
@@ -36,6 +47,19 @@ export default function StoryContextProvider({ children }) {
         return { ...storyNavSection, selected: action.payload.name };
       default:
         return storyNavSection;
+    }
+  }
+
+  function characterReducer(characterNav, action) {
+    switch (action.type) {
+      case ACTIONS.ADD_CHARACTER:
+        return { ...characterNav, selected: action.payload.name };
+      case ACTIONS.SELECT_CHARACTER:
+        console.log(action.payload.id);
+        console.log(action.payload.name);
+        return { ...characterNav, selected: "selected" };
+      default:
+        return characterNav;
     }
   }
 
@@ -78,7 +102,7 @@ export default function StoryContextProvider({ children }) {
       desire,
       obstacle,
       structure,
-      storyStatment,
+      storyStatement,
       storyId,
     };
 
@@ -113,7 +137,7 @@ export default function StoryContextProvider({ children }) {
     character,
     desire,
     obstacle,
-    storyStatment,
+    storyStatement,
     structure,
     stories,
     noStories,
@@ -129,6 +153,9 @@ export default function StoryContextProvider({ children }) {
     ACTIONS,
     dispatch,
     storyNavSection,
+    characterNav,
+    characterDispatch,
+    characters,
   };
 
   return (

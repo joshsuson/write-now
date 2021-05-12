@@ -6,6 +6,10 @@ module.exports = {
   theme: {
     extend: {},
     colors,
+    minWidth: {
+      "1/4": "25%",
+      "1/2": "50%",
+    },
   },
   variants: {
     extend: {},

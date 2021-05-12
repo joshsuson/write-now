@@ -13,10 +13,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function StoryNav() {
+export default function StoryNav({ initials }) {
   const { storyNavSection, dispatch, ACTIONS } = useStoryContext();
   return (
     <div className="bg-blueGray-800 col-span-2 rounded-l-lg">
+      <div className="text-coolGray-100 rounded-tl-lg bg-red-400 py-4 mb-4 font-semibold text-2xl flex justify-center items-center tracking-wider">
+        {initials}
+      </div>
       {navItems.map((item, i) => {
         return (
           <div

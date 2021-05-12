@@ -23,7 +23,7 @@ export default function StoryDashboard() {
   function returnSelectedSection() {
     switch (storyNavSection.selected) {
       case "overview":
-        return <Overview />;
+        return <Overview story={story} />;
       case "story":
         return <Story />;
       case "characters":
@@ -41,9 +41,9 @@ export default function StoryDashboard() {
       {!!loading && !story && <h1>Loading...</h1>}
       {!!story && !loading && (
         <>
-          <h1 className="text-center text-5xl">{story.title}</h1>
-          <div className="grid grid-cols-12 h-screen rounded-lg shadow-lg">
-            <StoryNav />
+          <h1 className="text-center text-5xl mb-8">{story.title}</h1>
+          <div className="grid grid-cols-12 rounded-lg shadow-lg">
+            <StoryNav initials={story.initials} />
             <>{returnSelectedSection()}</>
           </div>
         </>
